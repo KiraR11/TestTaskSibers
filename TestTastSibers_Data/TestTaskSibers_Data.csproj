@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TestTastSibers_Model\TestTastSibers_Model.csproj" />
+    <ProjectReference Include="..\TestTastSibers_Model\TestTaskSibers_Model.csproj" />
   </ItemGroup>
 
 </Project>

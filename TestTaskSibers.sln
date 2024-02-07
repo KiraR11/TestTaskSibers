@@ -5,9 +5,9 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTaskSibers_WebApp", "TestTaskSibers\TestTaskSibers_WebApp.csproj", "{82DC02B1-11E1-43E3-8C79-8846FAC170E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTastSibers_Model", "TestTastSibers_Model\TestTastSibers_Model.csproj", "{AAC1C6DE-7D5C-4830-B548-B621E9863660}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTaskSibers_Model", "TestTastSibers_Model\TestTaskSibers_Model.csproj", "{AAC1C6DE-7D5C-4830-B548-B621E9863660}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTastSibers_Data", "TestTastSibers_Data\TestTastSibers_Data.csproj", "{CADD64D1-AB3E-46CE-A241-2D33E74BA556}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTaskSibers_Data", "TestTastSibers_Data\TestTaskSibers_Data.csproj", "{CADD64D1-AB3E-46CE-A241-2D33E74BA556}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTaskSibers_TestingModel", "TestTaskSibers_TestingModel\TestTaskSibers_TestingModel.csproj", "{BB53CB9C-DA3A-4EEF-A459-81F454118A83}"
 EndProject

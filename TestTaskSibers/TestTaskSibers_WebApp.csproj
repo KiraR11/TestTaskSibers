@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TestTastSibers_Data\TestTastSibers_Data.csproj" />
-    <ProjectReference Include="..\TestTastSibers_Model\TestTastSibers_Model.csproj" />
+    <ProjectReference Include="..\TestTastSibers_Data\TestTaskSibers_Data.csproj" />
+    <ProjectReference Include="..\TestTastSibers_Model\TestTaskSibers_Model.csproj" />
   </ItemGroup>
 
 </Project>
