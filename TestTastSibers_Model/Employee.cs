@@ -17,6 +17,12 @@ namespace TestTaskSibers_Model
             Projects = projects;
         }
         private Employee(){}
+
+        const string ERROR_NAME_CANNOT_BE_EMPTU = "Имя не может быть пустым";
+        const string ERROR_SURNAME_CANNOT_BE_EMPTU = "Фамилия не может быть пустой";
+        const string ERROR_PATRONYMIC_CANNOT_BE_EMPTU = "Отчество не может быть пустым";
+        const string ERROR_WRONG_TYPE_EMAIL = "Email имеет неверный вид";
+
         private string _name;
         private string _surname;
         private string _patronymic;
@@ -25,46 +31,42 @@ namespace TestTaskSibers_Model
         private int Id { get; set; }
         public string Name 
         {
-            get
-            {
-                return _name;
-            }
+            get => _name;
             set
             {
+                if (string.IsNullOrEmpty(value))
+                    throw new ArgumentException(ERROR_NAME_CANNOT_BE_EMPTU);
                 _name = value;
             }
         }
 
         public string Surname
         {
-            get
-            {
-                return _surname;
-            }
+            get => _surname;
             set
             {
+                if (string.IsNullOrEmpty(value))
+                    throw new ArgumentException(ERROR_SURNAME_CANNOT_BE_EMPTU);
                 _surname = value;
             }
         }
         public string Patronymic
         {
-            get
-            {
-                return _patronymic;
-            }
+            get => _patronymic;
             set
             {
+                if (string.IsNullOrEmpty(value))
+                    throw new ArgumentException(ERROR_PATRONYMIC_CANNOT_BE_EMPTU);
                 _patronymic = value;
             }
         }
         public string Email
         {
-            get
-            {
-                return _email;
-            }
+            get => _email;
             set
             {
+                if(!value.Contains('@'))
+                    throw new ArgumentException(ERROR_WRONG_TYPE_EMAIL);
                 _email = value;
             }
         }
