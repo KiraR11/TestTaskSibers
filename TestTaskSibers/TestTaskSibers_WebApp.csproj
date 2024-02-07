@@ -12,4 +12,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TestTastSibers_Data\TestTastSibers_Data.csproj" />
+    <ProjectReference Include="..\TestTastSibers_Model\TestTastSibers_Model.csproj" />
+  </ItemGroup>
+
 </Project>

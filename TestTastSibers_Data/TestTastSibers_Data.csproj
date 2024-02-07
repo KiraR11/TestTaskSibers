@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TestTastSibers_Model\TestTastSibers_Model.csproj" />
+  </ItemGroup>
+
 </Project>
