@@ -25,8 +25,8 @@ namespace TestTaskSibers_Model
             DataStart = dataStart;
             DataEnd = dataEnd;
             Priority = priority;
-            Director = director;
             Employees = employees;
+            Director = director;
         }
         private Project(){}
 
@@ -42,7 +42,7 @@ namespace TestTaskSibers_Model
         private DateOnly _dataStart;
         private DateOnly _dataEnd;
         private byte _priority;
-        private Employee _director;
+        private Employee? _director;
         private int Id { get; set; }
 
         public string Name
@@ -90,7 +90,7 @@ namespace TestTaskSibers_Model
             get => _dataStart;
             set
             {
-                if (value > DataEnd)
+                if (value >= DataEnd && !(DataEnd is { Day: 1, Month: 1, Year: 1 }))
                     throw new ArgumentException(ERROR_DATA_END_CANNOT_BE_EARLIER_DATA_START);
                 _dataStart = value;
             }
@@ -100,18 +100,18 @@ namespace TestTaskSibers_Model
             get => _dataEnd;
             set
             {
-                if (value < DataStart)
+                if (value <= DataStart && !(DataStart is { Day: 1, Month: 1, Year: 1 }))
                     throw new ArgumentException(ERROR_DATA_END_CANNOT_BE_EARLIER_DATA_START);
                 _dataEnd = value;
             }
         }
 
-        public Employee Director
+        public Employee? Director
         {
             get => _director;
             set
             {
-                if(!Employees.Contains(value))
+                if(value != null && !Employees.Contains(value))
                     AddEmployee(value);
                 _director = value;
             }
@@ -129,6 +129,8 @@ namespace TestTaskSibers_Model
             Employees.Remove(employee);
             if(employee.Projects.Contains(this))
                 employee.RemoveProjects(this);
+            if (employee == Director)
+                Director = null;
         }
     }
 }
