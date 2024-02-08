@@ -227,5 +227,175 @@ namespace TestTaskSibers_TestingModel
             Assert.Equal(project3, projects[2]);
             Assert.Equal(project4, projects[3]);
         }
+
+        [Fact]
+        public void FilteringProjectsByStartDateRange()
+        {
+            Employee director = new Employee("Имя", "Фамилия", "Отчество", "email@mail.ru", []);
+            Project project1 = new Project("А проект", "Г компания заказчик", "Б компания изготовитель", new DateOnly(2020, 12, 1), new DateOnly(2023, 1, 1), 1, director, []);
+            Project project2 = new Project("Б проект", "В компания заказчик", "А компании изготовителя", new DateOnly(2022, 8, 1), new DateOnly(2023, 3, 1), 3, director, []);
+            Project project3 = new Project("В проект", "Б компания заказчик", "Г компании изготовителя", new DateOnly(2022, 5, 1), new DateOnly(2023, 4, 1), 8, director, []);
+            Project project4 = new Project("Г проект", "А компания заказчик", "В компании изготовителя", new DateOnly(2021, 6, 1), new DateOnly(2023, 2, 1), 2, director, []);
+            List<Project> notFilteredProjects = new List<Project>
+            {
+                project1,
+                project2,
+                project3,
+                project4
+            };
+            List<Project> exprctedFilteredProjects = new List<Project>
+            {
+                project2,
+                project3
+            };
+
+            List<Project> actualFilteredProjects = SorterProject.FilteringByStartDateRange(
+                notFilteredProjects, 
+                new DateOnly(2022, 1, 1), 
+                new DateOnly(2022, 12, 30)
+                );
+
+            Assert.Equal(exprctedFilteredProjects,actualFilteredProjects);
+        }
+        [Fact]
+        public void FilteringProjectsByEndDateRange()
+        {
+            Employee director = new Employee("Имя", "Фамилия", "Отчество", "email@mail.ru", []);
+            Project project1 = new Project("А проект", "Г компания заказчик", "Б компания изготовитель", new DateOnly(2020, 12, 1), new DateOnly(2023, 1, 1), 1, director, []);
+            Project project2 = new Project("Б проект", "В компания заказчик", "А компании изготовителя", new DateOnly(2022, 8, 1), new DateOnly(2023, 3, 1), 3, director, []);
+            Project project3 = new Project("В проект", "Б компания заказчик", "Г компании изготовителя", new DateOnly(2022, 5, 1), new DateOnly(2023, 4, 1), 8, director, []);
+            Project project4 = new Project("Г проект", "А компания заказчик", "В компании изготовителя", new DateOnly(2021, 6, 1), new DateOnly(2023, 2, 1), 2, director, []);
+            List<Project> notFilteredProjects = new List<Project>
+            {
+                project1,
+                project2,
+                project3,
+                project4
+            };
+            List<Project> exprctedFilteredProjects = new List<Project>
+            {
+                project1,
+                project4
+            };
+
+            List<Project> actualFilteredProjects = SorterProject.FilteringByEndDateRange(
+                notFilteredProjects,
+                new DateOnly(2023, 1, 1),
+                new DateOnly(2023, 2, 20)
+            );
+
+            Assert.Equal(exprctedFilteredProjects, actualFilteredProjects);
+        }
+        [Fact]
+        public void FilteringProjectsByPriorityRange()
+        {
+            Employee director = new Employee("Имя", "Фамилия", "Отчество", "email@mail.ru", []);
+            Project project1 = new Project("А проект", "Г компания заказчик", "Б компания изготовитель", new DateOnly(2020, 12, 1), new DateOnly(2023, 1, 1), 1, director, []);
+            Project project2 = new Project("Б проект", "В компания заказчик", "А компании изготовителя", new DateOnly(2022, 8, 1), new DateOnly(2023, 3, 1), 3, director, []);
+            Project project3 = new Project("В проект", "Б компания заказчик", "Г компании изготовителя", new DateOnly(2022, 5, 1), new DateOnly(2023, 4, 1), 8, director, []);
+            Project project4 = new Project("Г проект", "А компания заказчик", "В компании изготовителя", new DateOnly(2021, 6, 1), new DateOnly(2023, 2, 1), 2, director, []);
+            List<Project> notFilteredProjects = new List<Project>
+            {
+                project1,
+                project2,
+                project3,
+                project4
+            };
+            List<Project> exprctedFilteredProjects = new List<Project>
+            {
+                project1,
+                project2,
+                project4
+            };
+
+            List<Project> actualFilteredProjects = SorterProject.FilteringByPriorityRange(
+                notFilteredProjects,
+                0,
+                5
+            );
+
+            Assert.Equal(exprctedFilteredProjects, actualFilteredProjects);
+        }
+        [Fact]
+        public void FilteringProjectsByContainsCharsInName()
+        {
+            Employee director = new Employee("Имя", "Фамилия", "Отчество", "email@mail.ru", []);
+            Project project1 = new Project("А проект", "Г компания заказчик", "Б компания изготовитель", new DateOnly(2020, 12, 1), new DateOnly(2023, 1, 1), 1, director, []);
+            Project project2 = new Project("Б проект", "В компания заказчик", "А компании изготовителя", new DateOnly(2022, 8, 1), new DateOnly(2023, 3, 1), 3, director, []);
+            Project project3 = new Project("В проект", "Б компания заказчик", "Г компании изготовителя", new DateOnly(2022, 5, 1), new DateOnly(2023, 4, 1), 8, director, []);
+            Project project4 = new Project("Г проект", "А компания заказчик", "В компании изготовителя", new DateOnly(2021, 6, 1), new DateOnly(2023, 2, 1), 2, director, []);
+            List<Project> notFilteredProjects = new List<Project>
+            {
+                project1,
+                project2,
+                project3,
+                project4
+            };
+            List<Project> exprctedFilteredProjects = new List<Project>
+            {
+                project1,
+            };
+
+            List<Project> actualFilteredProjects = SorterProject.FilteringByContainsCharsInName(
+                notFilteredProjects,
+                "А"
+            );
+
+            Assert.Equal(exprctedFilteredProjects, actualFilteredProjects);
+        }
+        [Fact]
+        public void FilteringProjectsByContainsCharsInNameСustomer()
+        {
+            Employee director = new Employee("Имя", "Фамилия", "Отчество", "email@mail.ru", []);
+            Project project1 = new Project("А проект", "Г компания заказчик", "Б компания изготовитель", new DateOnly(2020, 12, 1), new DateOnly(2023, 1, 1), 1, director, []);
+            Project project2 = new Project("Б проект", "В компания заказчик", "А компании изготовителя", new DateOnly(2022, 8, 1), new DateOnly(2023, 3, 1), 3, director, []);
+            Project project3 = new Project("В проект", "Б компания заказчик", "Г компании изготовителя", new DateOnly(2022, 5, 1), new DateOnly(2023, 4, 1), 8, director, []);
+            Project project4 = new Project("Г проект", "А компания заказчик", "В компании изготовителя", new DateOnly(2021, 6, 1), new DateOnly(2023, 2, 1), 2, director, []);
+            List<Project> notFilteredProjects = new List<Project>
+            {
+                project1,
+                project2,
+                project3,
+                project4
+            };
+            List<Project> exprctedFilteredProjects = new List<Project>
+            {
+                project4,
+            };
+
+            List<Project> actualFilteredProjects = SorterProject.FilteringByContainsCharsInNameСustomer(
+                notFilteredProjects,
+                "А"
+            );
+
+            Assert.Equal(exprctedFilteredProjects, actualFilteredProjects);
+        }
+        [Fact]
+        public void FilteringProjectsByContainsCharsInNameСontractor()
+        {
+            Employee director = new Employee("Имя", "Фамилия", "Отчество", "email@mail.ru", []);
+            Project project1 = new Project("А проект", "Г компания заказчик", "Б компания изготовитель", new DateOnly(2020, 12, 1), new DateOnly(2023, 1, 1), 1, director, []);
+            Project project2 = new Project("Б проект", "В компания заказчик", "А компании изготовителя", new DateOnly(2022, 8, 1), new DateOnly(2023, 3, 1), 3, director, []);
+            Project project3 = new Project("В проект", "Б компания заказчик", "Г компании изготовителя", new DateOnly(2022, 5, 1), new DateOnly(2023, 4, 1), 8, director, []);
+            Project project4 = new Project("Г проект", "А компания заказчик", "В компании изготовителя", new DateOnly(2021, 6, 1), new DateOnly(2023, 2, 1), 2, director, []);
+            List<Project> notFilteredProjects = new List<Project>
+            {
+                project1,
+                project2,
+                project3,
+                project4
+            };
+            List<Project> exprctedFilteredProjects = new List<Project>
+            {
+                project2,
+            };
+
+            List<Project> actualFilteredProjects = SorterProject.FilteringByContainsCharsInNameСontractor(
+                notFilteredProjects,
+                "А"
+            );
+
+            Assert.Equal(exprctedFilteredProjects, actualFilteredProjects);
+        }
     }
 }
